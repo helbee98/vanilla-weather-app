@@ -100,6 +100,10 @@ main {
    opacity: 0.5;
 }
 
+.weather-forecast-icon {
+    width: 38px;
+}
+
 .weather-forecast-temperature-min {
     opacity: 0.5;
 }
