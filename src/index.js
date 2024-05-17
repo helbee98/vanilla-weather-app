@@ -58,11 +58,11 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 function formatDay(timestamp) {
-    let date = new Date(timestamp + 1000);
+    let date = new Date(timestamp * 1000);
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-    return days[date.getDate()];
-}
+  
+    return days[date.getDay()];
+  }
 
 
 
@@ -74,38 +74,34 @@ function getForecast(city) {
 }
 
 function displayForecast(response) {
-console.log(response.data);
-
-
-
-
-let forecastHTML = "";
-
-response.data.daily.forEach(function (day, index) {
-    if (index < 5)  {
-forecastHTML =
-forecastHTML + `
-    
- <div class="weather-forecast-date">
-${formatDay(day.time)}
-        </div>
-        < img src="${day.condition.icon_url}" class="weather-app-icon" />
-        
-        <div class="weather-forcast-temperatures">
-        <span class="weather-forecast-temperatures-max">${Math.round(day.temperature.maximum)} </span>
-        <span class=
-        "weather-forecast-temperatures-min">${Math.round(day.temperature.minimum)}</span> 
-    </div>
-    </div>
-</div>
-`;
-console.log(day.condition.icon_url);
-    }
-});
-let forecastElement = document.querySelector("#forecast");
-forecastElement.innerHTML = forecastHTML;
-
-}
+    console.log(response.data);
+  
+    let forecastHTML = "";
+  
+    response.data.daily.forEach(function (day, index) {
+      if (index < 5) {
+        forecastHTML =
+          forecastHTML +
+          `<div class="weather-forecast-day">
+              <div class="weather-forecast-date">
+                  ${formatDay(day.time)}
+              </div>
+              <img src="${day.condition.icon_url}" class="weather-app-icon" />
+              
+              <div class="weather-forcast-temperatures">
+                  <span class="weather-forecast-temperatures-max"> <strong>${Math.round(
+                    day.temperature.maximum
+                  )} º </strong> </span>
+                  <span class="weather-forecast-temperatures-min">${Math.round(
+                    day.temperature.minimum
+                  )} º </span> 
+              </div>
+          </div>`;
+      }
+    });
+    let forecastElement = document.querySelector("#forecast");
+    forecastElement.innerHTML = forecastHTML;
+  }
 
 
 searchCity("paris");

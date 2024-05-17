@@ -65,7 +65,7 @@ main {
 }
 
 .weather-app-details strong{
-    color: #f65282;
+    color: #6b8bd6;
 }
 
 .weather-app-temperature-container {
@@ -101,11 +101,18 @@ main {
 }
 
 .weather-forecast-icon {
-    width: 38px;
+    width: 28px;
+
 }
 
-.weather-forecast-temperature-min {
+.weather-forecast-temperatures-max {
+    color: #89ACFF;
+    padding: 0 15px;
+}
+
+.weather-forecast-temperatures-min {
     opacity: 0.5;
+    color: #89ACFF;
 }
 
 .weather-forecast-temperatures {
